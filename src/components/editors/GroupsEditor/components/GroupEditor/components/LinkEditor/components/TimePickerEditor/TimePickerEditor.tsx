@@ -1,6 +1,5 @@
 import { DataFrame, getDefaultTimeRange, TimeRange } from '@grafana/data';
-import { InlineField, InlineFieldRow, RadioButtonGroup, TimeRangeInput } from '@grafana/ui';
-import { Slider } from '@volkovlabs/components';
+import { InlineField, InlineFieldRow, RadioButtonGroup, Slider, TimeRangeInput } from '@grafana/ui';
 import React, { useState } from 'react';
 
 import { FieldPicker, FieldsGroup } from '@/components';

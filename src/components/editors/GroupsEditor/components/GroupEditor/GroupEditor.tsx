@@ -1,8 +1,8 @@
 import { cx } from '@emotion/css';
 import { DataFrame } from '@grafana/data';
-import { Button, Icon, IconButton, InlineField, InlineFieldRow, InlineSwitch, Input, useTheme2 } from '@grafana/ui';
+import { Button, Icon, IconButton, InlineField, InlineFieldRow, InlineSwitch, Input, Slider, useTheme2 } from '@grafana/ui';
 import { DragDropContext, Draggable, DraggingStyle, Droppable, DropResult, NotDraggingStyle } from '@hello-pangea/dnd';
-import { Collapse, Slider } from '@volkovlabs/components';
+import { Collapse } from '@volkovlabs/components';
 import React, { useCallback, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 

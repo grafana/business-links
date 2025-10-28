@@ -7,10 +7,10 @@ import {
   Input,
   RadioButtonGroup,
   Select,
+  Slider,
   TagsInput,
   TextArea,
 } from '@grafana/ui';
-import { Slider } from '@volkovlabs/components';
 import React, { useMemo, useState } from 'react';
 
 import { FieldsGroup } from '@/components';
