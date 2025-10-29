@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
   "dependencies": {
     "grafanaDependency": ">=11.5.0",
     "plugins": []
@@ -7,25 +7,12 @@
   "id": "volkovlabs-links-panel",
   "info": {
     "author": {
-      "name": "Volkov Labs",
-      "url": "https://volkovlabs.io"
+      "name": "Grafana Labs",
+      "url": "https://grafana.com"
     },
     "description": "Streamlines navigation with external links, dashboards, and dropdowns.",
     "keywords": ["links"],
-    "links": [
-      {
-        "name": "Documentation",
-        "url": "https://volkovlabs.io/plugins/business-links/"
-      },
-      {
-        "name": "GitHub",
-        "url": "https://github.com/volkovlabs/business-links"
-      },
-      {
-        "name": "Sponsor",
-        "url": "https://volkovlabs.io/pricing/"
-      }
-    ],
+    "links": [],
     "logos": {
       "large": "img/logo.svg",
       "small": "img/logo.svg"
@@ -33,7 +20,7 @@
     "screenshots": [
       {
         "name": "Panel",
-        "path": "img/panel.png"
+        "path": "img/dashboard.png"
       }
     ],
     "updated": "%TODAY%",

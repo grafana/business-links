@@ -1,5 +1,12 @@
 services:
   grafana:
+    extends:
+      file: .config/docker-compose-base.yaml
+      service: grafana
+    ports:
+      - 3000:3000/tcp
+
+  grafana-dev:
     image: ghcr.io/volkovlabs/app:latest
     ports:
       - 3000:3000/tcp
@@ -55,11 +62,7 @@ services:
     environment:
       - GF_DEFAULT_APP_MODE=development
       - GF_USERS_DEFAULT_THEME=light
-      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource,volkovlabs-variable-panel,volkovlabs-form-panel,volkovlabs-image-panel,grafana-llm-app
-      - GF_FEATURE_TOGGLES_ENABLE=externalServiceAccounts
-      - GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED=true
-      - OPENAI_ORG_ID=
-      - OPENAI_API_KEY=
+      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource
     volumes:
       - ./dist:/var/lib/grafana/plugins/volkovlabs-links-panel
       - ./provisioning:/etc/grafana/provisioning
@@ -73,26 +76,23 @@ services:
     environment:
       - GF_DEFAULT_APP_MODE=development
       - GF_USERS_DEFAULT_THEME=light
-      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource,volkovlabs-variable-panel,volkovlabs-form-panel,volkovlabs-image-panel,grafana-llm-app
-      - GF_FEATURE_TOGGLES_ENABLE=externalServiceAccounts
-      - GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED=true
-      - OPENAI_ORG_ID=
-      - OPENAI_API_KEY=
+      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource
     volumes:
       - ./dist:/var/lib/grafana/plugins/volkovlabs-links-panel
       - ./provisioning:/etc/grafana/provisioning
     profiles:
       - dependency
 
-  test:
+  playwright:
     build:
       context: .
       dockerfile: test/Dockerfile
     environment:
-      - GRAFANA_URL=http://127.0.0.1:3000
+      - GRAFANA_URL=http://grafana:3000
     volumes:
       - ./test:/app/test
       - ./playwright-report:/app/playwright-report
-    network_mode: host
+    depends_on:
+      - grafana
     profiles:
-      - e2e
+      - playwright

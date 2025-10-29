@@ -1,45 +1,19 @@
-# Business Links Panel for Grafana
+# Business Links for Grafana
+[![CI](https://github.com/grafana/business-links/actions/workflows/ci.yml/badge.svg)](https://github.com/grafana/business-links/actions/workflows/ci.yml)
+[![E2E](https://github.com/grafana/business-links/actions/workflows/e2e.yml/badge.svg)](https://github.com/grafana/business-links/actions/workflows/e2e.yml)
+[![License](https://img.shields.io/github/license/grafana/business-links)](https://github.com/grafana/business-links/blob/main/LICENSE)
 
-![Links Screenshot](https://github.com/VolkovLabs/business-links/raw/main/src/img/panel.png)
+>This project was originally contributed by [Volkov Labs](https://github.com/volkovlabs/business-links) - thanks for all your great work!
+>
+>We have republished under the same plugin ID, keeping the community signature. This means you can simply update your plugin version. A new ID would have required manual updates to your dashboards. For additional information on the changes, see the [Notices](https://github.com/grafana/business-links/blob/main/NOTICES.md).
 
-![Grafana](https://img.shields.io/badge/Grafana-12.1-orange)
-![CI](https://github.com/volkovlabs/business-links/workflows/CI/badge.svg)
-![E2E](https://github.com/volkovlabs/business-links/workflows/E2E/badge.svg)
-[![Codecov](https://codecov.io/gh/VolkovLabs/business-links/branch/main/graph/badge.svg)](https://codecov.io/gh/VolkovLabs/business-links)
-[![CodeQL](https://github.com/VolkovLabs/business-links/actions/workflows/codeql.yml/badge.svg)](https://github.com/VolkovLabs/business-links/actions/workflows/codeql-analysis.yml)
+This project is currently maintained by Grafana Labs. We welcome pull requests and will review them on a best-effort basis. If you're interested in taking on this project long-term, contact [integrations@grafana.com](mailto:integrations@grafana.com). We're eager to work with new maintainers and eventually hand over the project.
 
-## Introduction
-
-The Business Links panel for Grafana provides a streamlined interface to navigate effortlessly using external links, internal dashboards, time pickers, and dynamic dropdown menus.
+**Business Links** provides a streamlined interface to navigate effortlessly using external links, internal dashboards, time pickers, and dynamic dropdown menus.
 
 Designed for seamless integration, it enables users to access critical resources, switch between dashboards, or interact with custom workflows efficiently, all within a single, intuitive panel.
 
-## Requirements
-
-- **Business Links Panel 2.x** requires **Grafana 11.5 or 12**.
-- **Business Links Panel 1.x** requires **Grafana 11 or 12**.
-
-## Installation
-
-Install the plugin using one of these methods:
-
-### Grafana Plugins Catalog
-
-Visit [grafana.com/plugins/volkovlabs-links-panel](https://grafana.com/grafana/plugins/volkovlabs-links-panel/) and follow the instructions.
-
-### Grafana CLI
-
-```bash
-grafana cli plugins install volkovlabs-links-panel
-```
-
-## Getting Started
-
-Check out our installation guide:
-
-[![Install Business Suite Plugins in Cloud, OSS, Enterprise](https://raw.githubusercontent.com/volkovlabs/.github/main/started.png)](https://youtu.be/1qYzHfPXJF8)
-
-## Features
+## 🚀 Key Features
 
 - **External Links**: Connect to external tools, documentation, or websites directly from the panel.
 - **Dashboard Navigation**: Quickly jump to other Grafana dashboards for a cohesive monitoring experience.
@@ -48,12 +22,23 @@ Check out our installation guide:
 
 Ideal for teams needing centralized access to diverse resources, the Business Links panel boosts productivity and simplifies navigation in Grafana environments.
 
-## Business Suite for Grafana
+## 📋 Requirements
 
-The Business Links Panel is part of the **Business Suite**, a collection of open-source plugins by [Volkov Labs](https://volkovlabs.io/). These plugins solve common business needs with intuitive interfaces, detailed documentation, and video tutorials.
+| Plugin Version                | Compatible Grafana Versions |
+| ----------------------------- | --------------------------- |
+| **Business Links 2.x**        | Grafana 11.5 or 12          |
+| **Business Links 1.x**        | Grafana 11 or 12            |
 
-[![Business Suite for Grafana](https://raw.githubusercontent.com/VolkovLabs/.github/main/business.png)](https://volkovlabs.io/plugins/)
+## 🛠️ Installation
 
-## License
+Install the Business Links panel via the [Grafana Plugins Catalog](https://grafana.com/grafana/plugins/volkovlabs-links-panel/) or using the Grafana CLI:
 
-Licensed under the [Apache License 2.0](https://github.com/volkovlabs/business-links/blob/main/LICENSE).
+```bash
+grafana-cli plugins install volkovlabs-links-panel
+```
+
+After installation, restart Grafana and add the **Business Links** panel to your dashboard.
+
+## 📜 License
+
+This project is licensed under the [Apache License 2.0](https://github.com/grafana/business-links/blob/main/LICENSE).
