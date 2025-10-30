@@ -64,7 +64,11 @@ services:
     environment:
       - GF_DEFAULT_APP_MODE=development
       - GF_USERS_DEFAULT_THEME=light
-      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource
+      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource,volkovlabs-variable-panel,volkovlabs-form-panel,volkovlabs-image-panel,grafana-llm-app
+      - GF_FEATURE_TOGGLES_ENABLE=externalServiceAccounts
+      - GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED=true
+      - OPENAI_ORG_ID=
+      - OPENAI_API_KEY=
     volumes:
       - ./dist:/var/lib/grafana/plugins/volkovlabs-links-panel
       - ./provisioning:/etc/grafana/provisioning
@@ -78,7 +82,11 @@ services:
     environment:
       - GF_DEFAULT_APP_MODE=development
       - GF_USERS_DEFAULT_THEME=light
-      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource
+      - GF_INSTALL_PLUGINS=marcusolsson-static-datasource,volkovlabs-variable-panel,volkovlabs-form-panel,volkovlabs-image-panel,grafana-llm-app
+      - GF_FEATURE_TOGGLES_ENABLE=externalServiceAccounts
+      - GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED=true
+      - OPENAI_ORG_ID=
+      - OPENAI_API_KEY=
     volumes:
       - ./dist:/var/lib/grafana/plugins/volkovlabs-links-panel
       - ./provisioning:/etc/grafana/provisioning
