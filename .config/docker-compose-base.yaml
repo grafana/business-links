@@ -7,7 +7,8 @@ services:
       - 3000:3000/tcp
     volumes:
       - ../dist:/var/lib/grafana/plugins/volkovlabs-links-panel
-      - ../provisioning:/etc/grafana/provisioning
+      - ../provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ../provisioning/datasources:/etc/grafana/provisioning/datasources
     environment:
       NODE_ENV: development
       GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
