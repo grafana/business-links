@@ -37,6 +37,7 @@ services:
       - dev
       - main
       - dependency
+      - playwright
 
   server:
     build:
@@ -54,6 +55,7 @@ services:
       - dev
       - main
       - dependency
+      - playwright
 
   grafana-main:
     image: grafana/grafana:main
@@ -94,5 +96,7 @@ services:
       - ./playwright-report:/app/playwright-report
     depends_on:
       - grafana
+      - timescale
+      - server
     profiles:
       - playwright
