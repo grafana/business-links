@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
   "dependencies": {
     "grafanaDependency": ">=11.5.0",
     "plugins": []
@@ -20,7 +20,7 @@
     "screenshots": [
       {
         "name": "Panel",
-        "path": "img/dashboard.png"
+        "path": "img/panel.png"
       }
     ],
     "updated": "%TODAY%",
