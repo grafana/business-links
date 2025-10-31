@@ -9,7 +9,7 @@
 
 This project is currently maintained by Grafana Labs. We welcome pull requests and will review them on a best-effort basis. If you're interested in taking on this project long-term, contact [integrations@grafana.com](mailto:integrations@grafana.com). We're eager to work with new maintainers and eventually hand over the project.
 
-**Business Links** provides a streamlined interface to navigate effortlessly using external links, internal dashboards, time pickers, and dynamic dropdown menus.
+**Business Links** provides a streamlined interface to navigate effortlessly using external links, internal dashboards, time pickers, and dynamic drop-down menus.
 
 Designed for seamless integration, it enables users to access critical resources, switch between dashboards, or interact with custom workflows efficiently, all within a single, intuitive panel.
 

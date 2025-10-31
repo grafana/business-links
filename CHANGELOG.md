@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the **Business Links Panel** for Grafana are documented in this file. This panel streamlines navigation with external links, dashboards, and dropdowns.
+All notable changes to the **Business Links** panel for Grafana are documented in this file. This panel streamlines navigation with external links, dashboards, and dropdowns.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
