@@ -1,6 +1,6 @@
 # Business Links for Grafana
-[![CI](https://github.com/grafana/business-links/actions/workflows/ci.yml/badge.svg)](https://github.com/grafana/business-links/actions/workflows/ci.yml)
-[![E2E](https://github.com/grafana/business-links/actions/workflows/e2e.yml/badge.svg)](https://github.com/grafana/business-links/actions/workflows/e2e.yml)
+[![CI](https://github.com/grafana/business-links/actions/workflows/push.yml/badge.svg)](https://github.com/grafana/business-links/actions/workflows/push.yml)
+[![CD](https://github.com/grafana/business-links/actions/workflows/publish.yml/badge.svg)](https://github.com/grafana/business-links/actions/workflows/publish.yml)
 [![License](https://img.shields.io/github/license/grafana/business-links)](https://github.com/grafana/business-links/blob/main/LICENSE)
 
 >This project was originally contributed by [Volkov Labs](https://github.com/volkovlabs/business-links) - thanks for all your great work!
