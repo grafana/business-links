@@ -810,11 +810,11 @@ describe('ColumnsEditor', () => {
       );
 
       expect(selectors.fieldGridLayout()).toBeInTheDocument();
-      expect(selectors.fieldColumnsInManualLayout()).toBeInTheDocument();
-      expect(selectors.fieldColumnsInManualLayout()).toHaveValue('10');
+      expect(screen.getByLabelText('Grid columns size')).toBeInTheDocument();
+      expect(screen.getByLabelText('Grid columns size')).toHaveValue('10');
 
-      fireEvent.change(selectors.fieldColumnsInManualLayout(), { target: { value: 5 } });
-      fireEvent.blur(selectors.fieldColumnsInManualLayout(), { target: { value: 5 } });
+      fireEvent.change(screen.getByLabelText('Grid columns size'), { target: { value: 5 } });
+      fireEvent.blur(screen.getByLabelText('Grid columns size'), { target: { value: 5 } });
 
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -838,11 +838,11 @@ describe('ColumnsEditor', () => {
       );
 
       expect(selectors.fieldGridLayout()).toBeInTheDocument();
-      expect(selectors.fieldColumnsInManualLayout()).toBeInTheDocument();
-      expect(selectors.fieldColumnsInManualLayout()).toHaveValue('15');
+      expect(screen.getByLabelText('Grid columns size')).toBeInTheDocument();
+      expect(screen.getByLabelText('Grid columns size')).toHaveValue('15');
 
-      fireEvent.change(selectors.fieldColumnsInManualLayout(), { target: { value: 5 } });
-      fireEvent.blur(selectors.fieldColumnsInManualLayout(), { target: { value: 5 } });
+      fireEvent.change(screen.getByLabelText('Grid columns size'), { target: { value: 5 } });
+      fireEvent.blur(screen.getByLabelText('Grid columns size'), { target: { value: 5 } });
 
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -883,11 +883,11 @@ describe('ColumnsEditor', () => {
       );
 
       expect(selectors.fieldGridLayout()).toBeInTheDocument();
-      expect(selectors.fieldRowsInManualLayout()).toBeInTheDocument();
-      expect(selectors.fieldRowsInManualLayout()).toHaveValue('16');
+      expect(screen.getByLabelText('Row height size')).toBeInTheDocument();
+      expect(screen.getByLabelText('Row height size')).toHaveValue('16');
 
-      fireEvent.change(selectors.fieldRowsInManualLayout(), { target: { value: 32 } });
-      fireEvent.blur(selectors.fieldRowsInManualLayout(), { target: { value: 32 } });
+      fireEvent.change(screen.getByLabelText('Row height size'), { target: { value: 32 } });
+      fireEvent.blur(screen.getByLabelText('Row height size'), { target: { value: 32 } });
 
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -911,11 +911,11 @@ describe('ColumnsEditor', () => {
       );
 
       expect(selectors.fieldGridLayout()).toBeInTheDocument();
-      expect(selectors.fieldRowsInManualLayout()).toBeInTheDocument();
-      expect(selectors.fieldRowsInManualLayout()).toHaveValue('16');
+      expect(screen.getByLabelText('Row height size')).toBeInTheDocument();
+      expect(screen.getByLabelText('Row height size')).toHaveValue('16');
 
-      fireEvent.change(selectors.fieldRowsInManualLayout(), { target: { value: 32 } });
-      fireEvent.blur(selectors.fieldRowsInManualLayout(), { target: { value: 32 } });
+      fireEvent.change(screen.getByLabelText('Row height size'), { target: { value: 32 } });
+      fireEvent.blur(screen.getByLabelText('Row height size'), { target: { value: 32 } });
 
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({

@@ -3,7 +3,7 @@ import { DataFrame } from '@grafana/data';
 import { Button, Icon, IconButton, InlineField, InlineFieldRow, InlineSwitch, Input, Slider, useTheme2 } from '@grafana/ui';
 import { DragDropContext, Draggable, DraggingStyle, Droppable, DropResult, NotDraggingStyle } from '@hello-pangea/dnd';
 import { Collapse } from '@volkovlabs/components';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useId, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { GRID_COLUMN_SIZE, GRID_ROW_SIZE, TEST_IDS } from '@/constants';
@@ -98,6 +98,8 @@ export const GroupEditor: React.FC<Props> = ({
   dropdowns,
   annotationsLayers,
 }) => {
+  const gridColumnsId = useId();
+  const gridRowHeightId = useId();
   /**
    * Styles and Theme
    */
@@ -279,6 +281,7 @@ export const GroupEditor: React.FC<Props> = ({
         <>
           <InlineField label="Grid columns size" labelWidth={25} grow={true}>
             <Slider
+              inputId={gridColumnsId}
               value={gridColumnsSize}
               min={1}
               max={24}
@@ -292,7 +295,6 @@ export const GroupEditor: React.FC<Props> = ({
                   gridColumns: size,
                 });
               }}
-              {...testIds.fieldColumnsInManualLayout.apply()}
             />
           </InlineField>
           <InlineField
@@ -302,6 +304,7 @@ export const GroupEditor: React.FC<Props> = ({
             tooltip="Minimum grid row size. Change step 16px. "
           >
             <Slider
+              inputId={gridRowHeightId}
               value={gridRowHeight}
               min={16}
               max={96}
@@ -375,6 +378,7 @@ export const GroupEditor: React.FC<Props> = ({
                                 />
                               </InlineField>
                               <Button
+                                aria-label="Cancel edit"
                                 variant="secondary"
                                 fill="text"
                                 className={styles.actionButton}
@@ -405,6 +409,7 @@ export const GroupEditor: React.FC<Props> = ({
                           <>
                             {editItem !== item.name && (
                               <Button
+                                aria-label="Edit"
                                 icon="edit"
                                 variant="secondary"
                                 fill="text"

@@ -236,6 +236,7 @@ export const McpServersEditor: React.FC<Props> = ({ value = [], onChange }) => {
                               />
                             </InlineField>
                             <Button
+                              aria-label="Cancel edit"
                               variant="secondary"
                               fill="text"
                               className={styles.actionButton}
@@ -271,6 +272,7 @@ export const McpServersEditor: React.FC<Props> = ({ value = [], onChange }) => {
                             </div>
                             <div className={styles.serverActions}>
                               <Button
+                                aria-label="Edit"
                                 icon="edit"
                                 variant="secondary"
                                 fill="text"
