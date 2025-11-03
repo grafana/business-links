@@ -146,6 +146,8 @@ const config = async (env): Promise<Configuration> => {
           { from: hasReadme() ? 'README.md' : '../README.md', to: '.', force: true },
           { from: 'plugin.json', to: '.' },
           { from: '../LICENSE', to: '.' },
+          { from: '../LICENSE-original', to: '.' },
+          { from: '../NOTICES.md', to: '.' },
           { from: '../CHANGELOG.md', to: '.', force: true },
           { from: '**/*.json', to: '.' }, // TODO<Add an error for checking the basic structure of the repo>
           { from: '**/*.svg', to: '.', noErrorOnMissing: true }, // Optional
@@ -187,12 +189,6 @@ const config = async (env): Promise<Configuration> => {
       new ESLintPlugin({
         extensions: ['.ts', '.tsx'],
         lintDirtyModulesOnly: Boolean(env.development), // don't lint on start, only lint changed files
-        /**
-         * Disable failing for lint errors in dev mode
-         * Please revert after upgrade
-         * @override
-         */
-        failOnError: !Boolean(env.development),
       }),
       ...(env.development ? [new LiveReloadPlugin()] : []),
     ],
