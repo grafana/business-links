@@ -12,7 +12,12 @@
     },
     "description": "Streamlines navigation with external links, dashboards, and dropdowns.",
     "keywords": ["links"],
-    "links": [],
+    "links": [
+      {
+        "name": "Documentation",
+        "url": "https://grafana.com/docs/plugins/volkovlabs-links-panel/"
+      }
+    ],
     "logos": {
       "large": "img/logo.svg",
       "small": "img/logo.svg"
