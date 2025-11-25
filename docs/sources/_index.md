@@ -1,6 +1,6 @@
 ---
 title: Business Links
-description: Learn about Business Links in Grafana
+description: Learn how to navigate efficiently using external links, internal dashboards, and dynamic drop-down menus with the Business Links panel for Grafana.
 keywords:
   - business links
 labels:
@@ -24,11 +24,11 @@ Designed for seamless integration, it enables users to access critical resources
 
 ## Getting started
 
-The Business Links panel can be installed from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-links-panel/) or utilizing the Grafana command line tool.
+You can install the Business Links panel from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-links-panel/) or by using the Grafana command line tool.
 
 {{< youtube id="1qYzHfPXJF8" >}}
 
-For the latter, please use the following command.
+To install using the command line tool, run the following command:
 
 ```sh
 grafana cli plugins install volkovlabs-links-panel
@@ -36,11 +36,11 @@ grafana cli plugins install volkovlabs-links-panel
 
 ## Features
 
-- **External Links**: Connect to external tools, documentation, or websites directly from the panel.
-- **Dashboard Navigation**: Quickly jump to other Grafana dashboards for a cohesive monitoring experience.
-- **Dynamic Dropdowns**: Utilize interactive dropdown menus to filter data or trigger actions, enhancing user control and flexibility.
+- **External links**: Connect to external tools, documentation, or websites directly from the panel.
+- **Dashboard navigation**: Jump to other Grafana dashboards for a cohesive monitoring experience.
+- **Dynamic dropdowns**: Use interactive dropdown menus to filter data or trigger actions.
 
-Ideal for teams needing centralized access to diverse resources, the Business Links panel boosts productivity and simplifies navigation in Grafana environments.
+The Business Links panel is ideal for teams that need centralized access to diverse resources. It boosts productivity and simplifies navigation in Grafana environments.
 
 {{< video-embed src="/media/docs/grafana/panels-visualizations/business-links/links-demo.mp4" >}}
 
