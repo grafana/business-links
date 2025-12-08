@@ -218,11 +218,11 @@ describe('TimePickerEditor', () => {
       })
     );
 
-    expect(selectors.fieldTimePickerDifference()).toBeInTheDocument();
-    expect(selectors.fieldTimePickerDifference()).toHaveValue('10');
+    expect(screen.getByLabelText('Time highlight gap')).toBeInTheDocument();
+    expect(screen.getByLabelText('Time highlight gap')).toHaveValue('10');
 
-    fireEvent.change(selectors.fieldTimePickerDifference(), { target: { value: 5 } });
-    fireEvent.blur(selectors.fieldTimePickerDifference(), { target: { value: 5 } });
+    fireEvent.change(screen.getByLabelText('Time highlight gap'), { target: { value: 5 } });
+    fireEvent.blur(screen.getByLabelText('Time highlight gap'), { target: { value: 5 } });
 
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -247,11 +247,11 @@ describe('TimePickerEditor', () => {
       })
     );
 
-    expect(selectors.fieldTimePickerDifference()).toBeInTheDocument();
-    expect(selectors.fieldTimePickerDifference()).toHaveValue('30');
+    expect(screen.getByLabelText('Time highlight gap')).toBeInTheDocument();
+    expect(screen.getByLabelText('Time highlight gap')).toHaveValue('30');
 
-    fireEvent.change(selectors.fieldTimePickerDifference(), { target: { value: 5 } });
-    fireEvent.blur(selectors.fieldTimePickerDifference(), { target: { value: 5 } });
+    fireEvent.change(screen.getByLabelText('Time highlight gap'), { target: { value: 5 } });
+    fireEvent.blur(screen.getByLabelText('Time highlight gap'), { target: { value: 5 } });
 
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({

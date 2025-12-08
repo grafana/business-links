@@ -1,7 +1,6 @@
 import { DataFrame, getDefaultTimeRange, TimeRange } from '@grafana/data';
-import { InlineField, InlineFieldRow, RadioButtonGroup, TimeRangeInput } from '@grafana/ui';
-import { Slider } from '@volkovlabs/components';
-import React, { useState } from 'react';
+import { InlineField, InlineFieldRow, RadioButtonGroup, Slider, TimeRangeInput } from '@grafana/ui';
+import React, { useId, useState } from 'react';
 
 import { FieldPicker, FieldsGroup } from '@/components';
 import { TEST_IDS } from '@/constants';
@@ -42,6 +41,7 @@ export const timePickerTypeOptions = [
  */
 export const TimePickerEditor: React.FC<Props> = ({ value, onChange, data }) => {
   const [highlightSecondsDiff, setHighlightSecondsDiff] = useState(value.timePickerConfig?.highlightSecondsDiff ?? 30);
+  const timeGapId = useId();
 
   return (
     <>
@@ -112,6 +112,7 @@ export const TimePickerEditor: React.FC<Props> = ({ value, onChange, data }) => 
                 grow={true}
               >
                 <Slider
+                  inputId={timeGapId}
                   value={highlightSecondsDiff}
                   min={1}
                   max={60}
@@ -128,7 +129,6 @@ export const TimePickerEditor: React.FC<Props> = ({ value, onChange, data }) => 
                       },
                     });
                   }}
-                  {...TEST_IDS.timePickerEditor.fieldTimePickerDifference.apply()}
                 />
               </InlineField>
             </>

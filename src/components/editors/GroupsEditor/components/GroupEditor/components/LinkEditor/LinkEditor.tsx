@@ -7,11 +7,11 @@ import {
   Input,
   RadioButtonGroup,
   Select,
+  Slider,
   TagsInput,
   TextArea,
 } from '@grafana/ui';
-import { Slider } from '@volkovlabs/components';
-import React, { useMemo, useState } from 'react';
+import React, { useId, useMemo, useState } from 'react';
 
 import { FieldsGroup } from '@/components';
 import { TEST_IDS } from '@/constants';
@@ -286,6 +286,7 @@ export const LinkEditor: React.FC<Props> = ({
   dropdowns,
   annotationsLayers,
 }) => {
+  const temperatureSliderId = useId();
   /**
    * Annotations Layers options
    */
@@ -413,6 +414,7 @@ export const LinkEditor: React.FC<Props> = ({
               tooltip="Set the temperature for the LLM, 0 is the most deterministic, 1 is the most creative."
             >
               <Slider
+                inputId={temperatureSliderId}
                 value={value.llmTemperature ?? 0.7}
                 min={0}
                 max={1}
@@ -424,7 +426,6 @@ export const LinkEditor: React.FC<Props> = ({
                     llmTemperature: temp,
                   });
                 }}
-                {...TEST_IDS.linkEditor.fieldLlmTemperature.apply()}
               />
             </InlineField>
 

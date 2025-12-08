@@ -235,6 +235,7 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                                   />
                                 </InlineField>
                                 <Button
+                                  aria-label="Cancel edit"
                                   variant="secondary"
                                   fill="text"
                                   className={styles.actionButton}
@@ -274,6 +275,7 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                             <>
                               {editItem !== item.name && (
                                 <Button
+                                  aria-label="Edit"
                                   icon="edit"
                                   variant="secondary"
                                   fill="text"
@@ -290,6 +292,7 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                                 />
                               )}
                               <Button
+                                aria-label="Remove"
                                 icon="trash-alt"
                                 variant="secondary"
                                 fill="text"
