@@ -1,8 +1,7 @@
 import { cx } from '@emotion/css';
 import { StandardEditorProps } from '@grafana/data';
-import { Alert, Button, Icon, InlineField, InlineFieldRow, Input, useTheme2 } from '@grafana/ui';
+import { Alert, Button, Collapse, Icon, InlineField, InlineFieldRow, Input, Stack, useTheme2 } from '@grafana/ui';
 import { DragDropContext, Draggable, DraggingStyle, Droppable, DropResult, NotDraggingStyle } from '@hello-pangea/dnd';
-import { Collapse } from '@volkovlabs/components';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';
@@ -211,105 +210,111 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                       >
                         <Collapse
                           key={item.name}
-                          title={
-                            editItem === item.name ? (
-                              <div
-                                className={cx(styles.itemHeader, styles.itemHeaderForm)}
-                                onClick={(event) => event.stopPropagation()}
-                              >
-                                <InlineField className={styles.fieldName} invalid={!isUpdatedNameValid}>
-                                  <Input
-                                    autoFocus={true}
-                                    value={editName}
-                                    onChange={(event) => setEditName(event.currentTarget.value)}
-                                    onKeyDown={(e) => {
-                                      if (e.key === 'Enter' && isUpdatedNameValid) {
-                                        onSaveName();
-                                      }
+                          label={
+                            <Stack flex={1} alignItems="center" justifyContent="space-between">
+                              {editItem === item.name ? (
+                                <div
+                                  className={cx(styles.itemHeader, styles.itemHeaderForm)}
+                                  onClick={(event) => event.stopPropagation()}
+                                >
+                                  <InlineField className={styles.fieldName} invalid={!isUpdatedNameValid}>
+                                    <Input
+                                      autoFocus={true}
+                                      value={editName}
+                                      onChange={(event) => setEditName(event.currentTarget.value)}
+                                      onKeyDown={(e) => {
+                                        if (e.key === 'Enter' && isUpdatedNameValid) {
+                                          onSaveName();
+                                        }
 
-                                      if (e.key === 'Escape') {
-                                        onCancelEdit();
-                                      }
+                                        if (e.key === 'Escape') {
+                                          onCancelEdit();
+                                        }
+                                      }}
+                                      {...testIds.fieldName.apply()}
+                                    />
+                                  </InlineField>
+                                  <Button
+                                    aria-label="Cancel edit"
+                                    variant="secondary"
+                                    fill="text"
+                                    className={styles.actionButton}
+                                    icon="times"
+                                    size="sm"
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      onCancelEdit();
                                     }}
-                                    {...testIds.fieldName.apply()}
+                                    {...testIds.buttonCancelRename.apply()}
                                   />
-                                </InlineField>
-                                <Button
-                                  aria-label="Cancel edit"
-                                  variant="secondary"
-                                  fill="text"
-                                  className={styles.actionButton}
-                                  icon="times"
-                                  size="sm"
-                                  onClick={onCancelEdit}
-                                  {...testIds.buttonCancelRename.apply()}
-                                />
-                                <Button
-                                  variant="secondary"
-                                  fill="text"
-                                  className={styles.actionButton}
-                                  icon="save"
-                                  size="sm"
-                                  onClick={onSaveName}
-                                  disabled={!isUpdatedNameValid}
-                                  tooltip={
-                                    isUpdatedNameValid
-                                      ? ''
-                                      : 'Name is empty or group with the same name already exists.'
-                                  }
-                                  {...testIds.buttonSaveRename.apply()}
-                                />
-                              </div>
-                            ) : (
-                              <div
-                                className={cx(styles.itemHeader, styles.itemHeaderText)}
-                                {...testIds.itemTitle.apply(item.name)}
-                              >
-                                {item.name}
-                              </div>
-                            )
-                          }
-                          headerTestId={testIds.itemHeader.selector(item.name)}
-                          contentTestId={testIds.itemContent.selector(item.name)}
-                          actions={
-                            <>
-                              {editItem !== item.name && (
-                                <Button
-                                  aria-label="Edit"
-                                  icon="edit"
-                                  variant="secondary"
-                                  fill="text"
-                                  size="sm"
-                                  className={styles.actionButton}
-                                  onClick={() => {
-                                    /**
-                                     * Start Edit
-                                     */
-                                    setEditName(item.name);
-                                    setEditItem(item.name);
-                                  }}
-                                  {...testIds.buttonStartRename.apply()}
-                                />
+                                  <Button
+                                    variant="secondary"
+                                    fill="text"
+                                    className={styles.actionButton}
+                                    icon="save"
+                                    size="sm"
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      onSaveName();
+                                    }}
+                                    disabled={!isUpdatedNameValid}
+                                    tooltip={
+                                      isUpdatedNameValid
+                                        ? ''
+                                        : 'Name is empty or group with the same name already exists.'
+                                    }
+                                    {...testIds.buttonSaveRename.apply()}
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className={cx(styles.itemHeader, styles.itemHeaderText)}
+                                  {...testIds.itemTitle.apply(item.name)}
+                                >
+                                  {item.name}
+                                </div>
                               )}
-                              <Button
-                                aria-label="Remove"
-                                icon="trash-alt"
-                                variant="secondary"
-                                fill="text"
-                                size="sm"
-                                className={styles.actionButton}
-                                onClick={() => {
-                                  /**
-                                   * Remove Item
-                                   */
-                                  onChangeItems(value.filter((group) => group.name !== item.name));
-                                }}
-                                {...testIds.buttonRemove.apply()}
-                              />
-                              <div className={styles.dragHandle} {...provided.dragHandleProps}>
-                                <Icon name="draggabledots" className={styles.dragIcon} />
-                              </div>
-                            </>
+                              <Stack alignItems="center" gap={0.5}>
+                                {editItem !== item.name && (
+                                  <Button
+                                    aria-label="Edit"
+                                    icon="edit"
+                                    variant="secondary"
+                                    fill="text"
+                                    size="sm"
+                                    className={styles.actionButton}
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      /**
+                                       * Start Edit
+                                       */
+                                      setEditName(item.name);
+                                      setEditItem(item.name);
+                                    }}
+                                    {...testIds.buttonStartRename.apply()}
+                                  />
+                                )}
+                                <Button
+                                  aria-label="Remove"
+                                  icon="trash-alt"
+                                  variant="secondary"
+                                  fill="text"
+                                  size="sm"
+                                  className={styles.actionButton}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    /**
+                                     * Remove Item
+                                     */
+                                    onChangeItems(value.filter((group) => group.name !== item.name));
+                                  }}
+                                  {...testIds.buttonRemove.apply()}
+                                />
+                                <div className={styles.dragHandle} {...provided.dragHandleProps}>
+                                  <Icon name="draggabledots" className={styles.dragIcon} />
+                                </div>
+                              </Stack>
+                            </Stack>
                           }
                           isOpen={collapseState[item.name]}
                           onToggle={() => onToggleItemExpandedState(item.name)}
