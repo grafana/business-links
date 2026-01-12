@@ -211,7 +211,7 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                         <Collapse
                           key={item.name}
                           label={
-                            <Stack flex={1} alignItems="center" justifyContent="space-between">
+                            <Stack data-testid={testIds.itemHeader.selector(item.name)} flex={1} alignItems="center" justifyContent="space-between">
                               {editItem === item.name ? (
                                 <div
                                   className={cx(styles.itemHeader, styles.itemHeaderForm)}
@@ -319,25 +319,27 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                           isOpen={collapseState[item.name]}
                           onToggle={() => onToggleItemExpandedState(item.name)}
                         >
-                          <GroupEditor
-                            data={data}
-                            name={item.name}
-                            value={item}
-                            dashboards={dashboards}
-                            optionId={id}
-                            dropdowns={availableDropdowns}
-                            annotationsLayers={annotationsLayers}
-                            onChange={(newGroup: GroupConfig) => {
-                              const updatedGroups = value.map((group) => {
-                                if (group.name === newGroup.name) {
-                                  return newGroup;
-                                }
+                          <div data-testid={testIds.itemContent.selector(item.name)}>
+                            <GroupEditor
+                              data={data}
+                              name={item.name}
+                              value={item}
+                              dashboards={dashboards}
+                              optionId={id}
+                              dropdowns={availableDropdowns}
+                              annotationsLayers={annotationsLayers}
+                              onChange={(newGroup: GroupConfig) => {
+                                const updatedGroups = value.map((group) => {
+                                  if (group.name === newGroup.name) {
+                                    return newGroup;
+                                  }
 
-                                return group;
-                              });
-                              onChange(updatedGroups);
-                            }}
-                          />
+                                  return group;
+                                });
+                                onChange(updatedGroups);
+                              }}
+                            />
+                          </div>
                         </Collapse>
                       </div>
                     )}

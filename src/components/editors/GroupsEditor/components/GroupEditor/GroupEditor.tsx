@@ -351,7 +351,7 @@ export const GroupEditor: React.FC<Props> = ({
                     >
                       <Collapse
                         label={
-                          <Stack flex={1} alignItems="center" justifyContent="space-between">
+                          <Stack data-testid={testIds.itemHeader.selector(item.name)} flex={1} alignItems="center" justifyContent="space-between">
                             {editItem === item.name ? (
                               <div
                                 className={cx(styles.itemHeader, styles.itemHeaderForm)}
@@ -474,18 +474,20 @@ export const GroupEditor: React.FC<Props> = ({
                           })
                         }
                       >
-                        <LinkEditor
-                          value={item}
-                          onChange={(link) => {
-                            onChangeItems(items.map((itemLink) => (itemLink.name === link.name ? link : itemLink)));
-                          }}
-                          data={data}
-                          optionId={optionId}
-                          dropdowns={dropdowns}
-                          dashboards={dashboards}
-                          isGrid={value.gridLayout}
-                          annotationsLayers={annotationsLayers}
-                        />
+                        <div data-testid={testIds.itemContent.selector(item.name)}>
+                          <LinkEditor
+                            value={item}
+                            onChange={(link) => {
+                              onChangeItems(items.map((itemLink) => (itemLink.name === link.name ? link : itemLink)));
+                            }}
+                            data={data}
+                            optionId={optionId}
+                            dropdowns={dropdowns}
+                            dashboards={dashboards}
+                            isGrid={value.gridLayout}
+                            annotationsLayers={annotationsLayers}
+                          />
+                        </div>
                       </Collapse>
                     </div>
                   )}
