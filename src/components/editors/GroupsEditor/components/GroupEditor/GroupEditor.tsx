@@ -455,7 +455,7 @@ export const GroupEditor: React.FC<Props> = ({
                                 aria-label="Remove"
                                 {...testIds.buttonRemove.apply()}
                               />
-                              <div className={styles.dragHandle} {...provided.dragHandleProps}>
+                              <div onClick={(event) => event.stopPropagation()} className={styles.dragHandle} {...provided.dragHandleProps}>
                                 <Icon
                                   title="Drag and drop to reorder"
                                   name="draggabledots"

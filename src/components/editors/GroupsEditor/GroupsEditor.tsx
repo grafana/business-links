@@ -310,7 +310,7 @@ export const GroupsEditor: React.FC<Props> = ({ context: { options, eventBus, da
                                   }}
                                   {...testIds.buttonRemove.apply()}
                                 />
-                                <div className={styles.dragHandle} {...provided.dragHandleProps}>
+                                <div onClick={(event) => event.stopPropagation()} className={styles.dragHandle} {...provided.dragHandleProps}>
                                   <Icon name="draggabledots" className={styles.dragIcon} />
                                 </div>
                               </Stack>
