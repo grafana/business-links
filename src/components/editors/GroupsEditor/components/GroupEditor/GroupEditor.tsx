@@ -348,10 +348,11 @@ export const GroupEditor: React.FC<Props> = ({
                       {...provided.draggableProps}
                       style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                       className={styles.item}
+                      data-testid={testIds.itemHeader.selector(item.name)} 
                     >
                       <Collapse
                         label={
-                          <Stack data-testid={testIds.itemHeader.selector(item.name)} flex={1} alignItems="center" justifyContent="space-between">
+                          <Stack flex={1} alignItems="center" justifyContent="space-between">
                             {editItem === item.name ? (
                               <div
                                 className={cx(styles.itemHeader, styles.itemHeaderForm)}

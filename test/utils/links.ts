@@ -302,7 +302,7 @@ class GroupEditorHelper {
   }
 
   public async openLinkEditor(name: string) {
-    return await this.selectors.itemHeader(name).locator('button[aria-label="Expand"]').click();
+    return await this.selectors.itemHeader(name).getByRole('button', { name: new RegExp(name) }).click();
   }
 
   public getLinkEditor(linkName: string) {
