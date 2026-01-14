@@ -71,7 +71,7 @@ test.describe('Business Links Panel', () => {
       await linksGroup.checkPresence();
 
       const singleLinkEditor = linksGroup.getLinkEditor('Link');
-      await linksGroup.openLinkEditor('Link');
+      await page.getByRole('button', { name: /Link / }).click();
       await singleLinkEditor.checkIconEditorPresence();
     });
 
@@ -109,7 +109,7 @@ test.describe('Business Links Panel', () => {
       await linksGroup.checkPresence();
 
       const linkEditor = linksGroup.getLinkEditor('Range');
-      await linksGroup.openLinkEditor('Range');
+      await page.getByRole('button', { name: /Range / }).click();
       const timePickerEditor = linkEditor.getTimePickerEditor();
 
       await timePickerEditor.checkFieldFromPresence();
