@@ -2,7 +2,7 @@
   "author": "Grafana Labs",
   "dependencies": {
     "@emotion/css": "^11.13.5",
-    "@grafana/data": "12.3.0",
+    "@grafana/data": "12.4.3",
     "@grafana/llm": "^0.22.1",
     "@grafana/runtime": "12.3.0",
     "@grafana/scenes": "^6.28.6",
