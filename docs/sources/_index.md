@@ -26,8 +26,6 @@ Designed for seamless integration, it enables users to access critical resources
 
 You can install the Business Links panel from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-links-panel/) or by using the Grafana command line tool.
 
-{{< youtube id="1qYzHfPXJF8" >}}
-
 To install using the command line tool, run the following command:
 
 ```sh
