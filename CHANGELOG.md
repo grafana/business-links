@@ -4,6 +4,12 @@ All notable changes to the **Business Links** panel for Grafana are documented i
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Project Updates
+
+- Added `.npmrc` with `ignore-scripts=true` to disable lifecycle scripts and mitigate supply-chain attack risk.
+
 ## [2.6.0] - 2025-10-29
 
 ### Project Updates
