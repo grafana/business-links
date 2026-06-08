@@ -1,5 +1,5 @@
 import { selectors } from '@grafana/e2e-selectors';
-import { createSelector } from '@volkovlabs/jest-selectors';
+import { createSelector } from '@/test-utils/jest-selectors';
 
 /**
  * Test Identifiers

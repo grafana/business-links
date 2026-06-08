@@ -4,6 +4,12 @@ All notable changes to the **Business Links** panel for Grafana are documented i
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Project Updates
+
+- Removed dependencies on `@volkovlabs/components`, `@volkovlabs/eslint-config`, and `@volkovlabs/jest-selectors`. `AutosizeCodeEditor` (and its `Toolbar`) are now inlined under `src/components/AutosizeCodeEditor/`. Jest selector helpers (`getJestSelectors`, `createSelector`) are inlined under `src/test-utils/jest-selectors.ts`. `monaco-editor` is added as an explicit `devDependency` for the inlined editor's `monacoType` import. The repo now relies on `@grafana/eslint-config/flat.js` directly; pre-existing rule violations surfaced by lint are captured in `eslint-suppressions.json`.
+
 ## [2.6.2] - 2026-05-21
 
 ### Project Updates

@@ -1,6 +1,6 @@
 import { TimeRange } from '@grafana/data';
 import { IconName } from '@grafana/ui';
-// eslint-disable-next-line @typescript-eslint/naming-convention
+ 
 import ReactGridLayout from 'react-grid-layout';
 
 import { LinkTarget } from './editor';

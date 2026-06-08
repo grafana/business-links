@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { AutosizeCodeEditor } from '@volkovlabs/components';
-import { getJestSelectors } from '@volkovlabs/jest-selectors';
 import React from 'react';
 
+import { AutosizeCodeEditor } from '@/components/AutosizeCodeEditor';
 import { TEST_IDS } from '@/constants';
+import { getJestSelectors } from '@/test-utils/jest-selectors';
 
 import { CustomCodeEditor } from './CustomCodeEditor';
 
@@ -16,10 +16,9 @@ jest.mock('@grafana/ui', () => ({
 }));
 
 /**
- * Mock @volkovlabs/components
+ * Mock AutosizeCodeEditor
  */
-jest.mock('@volkovlabs/components', () => ({
-  ...jest.requireActual('@volkovlabs/components'),
+jest.mock('@/components/AutosizeCodeEditor', () => ({
   AutosizeCodeEditor: jest.fn().mockImplementation(() => null),
 }));
 
