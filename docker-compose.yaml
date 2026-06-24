@@ -5,6 +5,9 @@ services:
       service: grafana
     ports:
       - 3000:3000/tcp
+    build:
+      args:
+        grafana_version: 13.1.0
     entrypoint: ["/bin/sh", "-c", "/usr/share/grafana/bin/grafana cli plugins install grafana-llm-app && /usr/share/grafana/bin/grafana cli plugins install marcusolsson-static-datasource && exec /entrypoint.sh"]
 
   timescale:
