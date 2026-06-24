@@ -4,7 +4,7 @@ import { CachedMcpState, McpToolResult } from '@/types';
  * Clears MCP cache and closes all clients
  * @param cacheRef - Reference to cached MCP state
  */
-export function clearMcpCache(cacheRef: React.RefObject<CachedMcpState | null>) {
+export function clearMcpCache(cacheRef: React.MutableRefObject<CachedMcpState | null>) {
   if (cacheRef.current) {
     cacheRef.current.clients.forEach(({ client }) => {
       try {

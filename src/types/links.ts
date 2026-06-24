@@ -442,9 +442,9 @@ export interface UseTextareaResizeReturn {
   /**
    * Ref for the textarea element
    *
-   * @type {React.RefObject<HTMLTextAreaElement | null>}
+   * @type {React.RefObject<HTMLTextAreaElement>}
    */
-  textareaRef: React.RefObject<HTMLTextAreaElement | null>;
+  textareaRef: React.RefObject<HTMLTextAreaElement>;
 
   /**
    * Function to adjust textarea height
