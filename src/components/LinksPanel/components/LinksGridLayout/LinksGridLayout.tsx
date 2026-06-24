@@ -6,7 +6,7 @@ import { DataFrame, InterpolateFunction } from '@grafana/data';
 import { locationService } from '@grafana/runtime';
 import { Icon, useStyles2 } from '@grafana/ui';
 import React, { RefObject, useMemo, useRef } from 'react';
-import ReactGridLayout from 'react-grid-layout';
+import ReactGridLayout, { verticalCompactor } from 'react-grid-layout';
 
 import { GRID_COLUMN_SIZE, GRID_MARGIN_GAP, GRID_ROW_SIZE, PANEL_TITLE_HEIGHT, TEST_IDS } from '@/constants';
 import { GroupConfig, PanelOptions, VisualLink, VisualLinkType } from '@/types';
@@ -219,16 +219,23 @@ export const LinksGridLayout: React.FC<Props> = ({
     >
       <ReactGridLayout
         key={currentColumnsSize}
+        gridConfig={{
+          rowHeight: gridCurrentRowSize,
+          maxRows: Math.floor(currentMaxHeight / gridCurrentRowSize),
+          cols: currentColumnsSize,
+          margin: [GRID_MARGIN_GAP, GRID_MARGIN_GAP],
+        }}
+        dragConfig={{
+          enabled: isEditMode,
+          handle: '.react-grid-dragHandleExample',
+        }}
+        resizeConfig={{
+          enabled: isEditMode,
+        }}
         layout={linksLayout}
-        cols={currentColumnsSize}
-        rowHeight={gridCurrentRowSize}
-        margin={[GRID_MARGIN_GAP, GRID_MARGIN_GAP]}
         width={width - 5}
-        autoSize={true}
-        compactType="vertical"
-        isDraggable={isEditMode}
-        isResizable={isEditMode}
-        draggableHandle=".react-grid-dragHandleExample"
+        autoSize
+        compactor={verticalCompactor}
         onLayoutChange={(layout) => {
           const updateGroups = options.groups.map((optionGroup) => {
             if (optionGroup.name === activeGroup?.name) {

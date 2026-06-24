@@ -7,7 +7,7 @@ WORKDIR /app
 COPY server.ts .
 
 ## Add Postgres package
-RUN yarn add pg
+RUN npm install pg
 
 ## Add the wait script to the image
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
