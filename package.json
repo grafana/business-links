@@ -8,10 +8,9 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
-    "dev": "webpack -w -c ./.config/webpack/webpack.config.ts --env development",
-    "e2e": "playwright test",
-    "levitate": "npx @grafana/levitate@latest is-compatible --path src/module.ts --target @grafana/data,@grafana/runtime,@grafana/ui",
+    "build": "webpack -c ./webpack.config.ts --env production",
+    "dev": "webpack -w -c ./webpack.config.ts --env development",
+"levitate": "npx @grafana/levitate@latest is-compatible --path src/module.ts --target @grafana/data,@grafana/runtime,@grafana/ui",
     "lint": "eslint --cache .",
     "lint:fix": "npm run lint -- --fix && prettier --write --list-different .",
     "mcp:finance": "cd mcp/server-finance && npm run dev",
@@ -24,7 +23,7 @@
     "test:ci": "jest --passWithNoTests --maxWorkers 4",
     "test:e2e": "npx playwright test",
     "test:e2e:dev": "npx playwright test --ui",
-    "test:e2e:docker": "docker compose --profile e2e up --exit-code-from test",
+    "test:e2e:docker": "docker compose --profile playwright up --exit-code-from playwright",
     "typecheck": "tsc --noEmit",
     "upgrade": "npm upgrade --save"
   },

@@ -1,4 +1,5 @@
 // webpack.config.ts
+import path from 'path';
 import type { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
 import grafanaConfig from './.config/webpack/webpack.config';
@@ -18,6 +19,7 @@ const config = async (env): Promise<Configuration> => {
     resolve: {
       alias: {
         handlebars: 'handlebars/dist/handlebars.js',
+        '@': path.resolve(__dirname, 'src'),
       },
       fallback: {
         fs: false,
