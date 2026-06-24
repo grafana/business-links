@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import { DataFrame, InterpolateFunction } from '@grafana/data';
 import { locationService } from '@grafana/runtime';
 import { Icon, useStyles2 } from '@grafana/ui';
-import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react';
+import React, { RefObject, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ReactGridLayout, { verticalCompactor } from 'react-grid-layout';
 
 import { GRID_COLUMN_SIZE, GRID_MARGIN_GAP, GRID_ROW_SIZE, PANEL_TITLE_HEIGHT, TEST_IDS } from '@/constants';
@@ -138,12 +138,12 @@ export const LinksGridLayout: React.FC<Props> = ({
    */
   const [toolbarHeight, setToolbarHeight] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = toolbarRowRef?.current;
     if (!el) return;
 
     setToolbarHeight(el.offsetHeight);
-    const observer = new ResizeObserver(() => setToolbarHeight(el.offsetHeight));
+    const observer = new ResizeObserver(() => setToolbarHeight(toolbarRowRef.current?.offsetHeight ?? 0));
     observer.observe(el);
     return () => observer.disconnect();
   }, [toolbarRowRef]);
