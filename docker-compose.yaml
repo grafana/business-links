@@ -5,6 +5,7 @@ services:
       service: grafana
     ports:
       - 3000:3000/tcp
+    entrypoint: ["/bin/sh", "-c", "/usr/share/grafana/bin/grafana cli plugins install grafana-llm-app && exec /entrypoint.sh"]
 
   timescale:
     image: timescale/timescaledb:latest-pg14
@@ -15,6 +16,11 @@ services:
       - 5432:5432
     volumes:
       - ./timescale:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     profiles:
       - dev
       - main
@@ -27,9 +33,9 @@ services:
     ports:
       - 3001:3001/tcp
     depends_on:
-      - timescale
+      timescale:
+        condition: service_healthy
     environment:
-      WAIT_HOSTS: timescale:5432
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_HOST: timescale
