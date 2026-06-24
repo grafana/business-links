@@ -383,7 +383,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
     initialPrompt,
     customAssistantName,
     mcpEnabled,
-    availableTools?.length,
+    availableTools,
     sendMessageWithTools,
     mcpServers,
     useDefaultGrafanaMcp,
@@ -423,9 +423,21 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
   }, [inputValue, adjustTextareaHeight]);
 
   useEffect(() => {
-    if (isOpen) {
-      initializeMcpTools();
+    if (!isOpen) {
+      return;
     }
+
+    let cancelled = false;
+
+    (async () => {
+      if (!cancelled) {
+        await initializeMcpTools();
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [isOpen, initializeMcpTools]);
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import { DataFrame, InterpolateFunction } from '@grafana/data';
 import { locationService } from '@grafana/runtime';
 import { Icon, useStyles2 } from '@grafana/ui';
-import React, { RefObject, useMemo, useRef } from 'react';
+import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import ReactGridLayout, { verticalCompactor } from 'react-grid-layout';
 
 import { GRID_COLUMN_SIZE, GRID_MARGIN_GAP, GRID_ROW_SIZE, PANEL_TITLE_HEIGHT, TEST_IDS } from '@/constants';
@@ -134,22 +134,28 @@ export const LinksGridLayout: React.FC<Props> = ({
   const gridWrapRef = useRef<HTMLDivElement>(null);
 
   /**
+   * Toolbar height tracked via ResizeObserver to avoid reading ref during render
+   */
+  const [toolbarHeight, setToolbarHeight] = useState(0);
+
+  useEffect(() => {
+    const el = toolbarRowRef?.current;
+    if (!el) return;
+
+    setToolbarHeight(el.offsetHeight);
+    const observer = new ResizeObserver(() => setToolbarHeight(el.offsetHeight));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [toolbarRowRef]);
+
+  /**
    * Current max height for grid layout
    * based on panel, panel title, toolbar heights
    */
   const currentMaxHeight = useMemo(() => {
-    /**
-     * Panel title height
-     */
     const titleHeight = panelTitle ? PANEL_TITLE_HEIGHT : 0;
-
-    /**
-     * Toolbar height
-     */
-    const toolbarHeight = toolbarRowRef && toolbarRowRef.current ? toolbarRowRef.current.offsetHeight : 0;
-
     return height - titleHeight - toolbarHeight;
-  }, [height, panelTitle, toolbarRowRef]);
+  }, [height, panelTitle, toolbarHeight]);
 
   /**
    * Column Size
