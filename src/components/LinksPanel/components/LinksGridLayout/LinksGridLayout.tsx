@@ -143,7 +143,10 @@ export const LinksGridLayout: React.FC<Props> = ({
     if (!el) return;
 
     setToolbarHeight(el.offsetHeight);
-    const observer = new ResizeObserver(() => setToolbarHeight(toolbarRowRef.current?.offsetHeight ?? 0));
+    const observer = new ResizeObserver(() => {
+      const h = toolbarRowRef.current?.offsetHeight ?? 0;
+      setToolbarHeight((prev) => (prev === h ? prev : h));
+    });
     observer.observe(el);
     return () => observer.disconnect();
   }, [toolbarRowRef]);
