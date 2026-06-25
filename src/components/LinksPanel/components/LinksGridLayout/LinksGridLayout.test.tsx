@@ -1,7 +1,7 @@
 import { createTheme } from '@grafana/data';
 import { locationService } from '@grafana/runtime';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/test-utils/jest-selectors';
 import React, { useRef } from 'react';
 
 import { TEST_IDS } from '@/constants';

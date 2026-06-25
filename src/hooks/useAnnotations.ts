@@ -30,7 +30,7 @@ export const useAnnotations = ({ eventBus }: { eventBus?: EventBus }) => {
 
       const flattened = layers.flatMap((layer) => layer?.state?.annotationLayers ?? []);
       setAnnotationsLayers(flattened);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+       
     } catch (err) {
       setAnnotationsLayers([]);
     }

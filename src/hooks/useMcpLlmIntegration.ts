@@ -81,7 +81,7 @@ export const useMcpLlmIntegration = (addErrorMessage?: (message: string) => void
       try {
         const allTools = await mcpService.getAvailableTools(mcpServers, useDefaultGrafanaMcp);
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         const tools = mcpService.convertToolsToOpenAiFormat(allTools) as any;
 
         const openAiMessages = messages
@@ -103,7 +103,7 @@ export const useMcpLlmIntegration = (addErrorMessage?: (message: string) => void
               return {
                 role: msg.role,
                 content: String(msg.content),
-                // eslint-disable-next-line @typescript-eslint/naming-convention
+                 
                 tool_call_id: msg.toolCallId,
               };
             }
@@ -183,7 +183,7 @@ export const useMcpLlmIntegration = (addErrorMessage?: (message: string) => void
                 return {
                   role: msg.role,
                   content: String(msg.content),
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
+                   
                   tool_call_id: msg.toolCallId,
                 };
               }
@@ -191,7 +191,7 @@ export const useMcpLlmIntegration = (addErrorMessage?: (message: string) => void
                 return {
                   role: msg.role,
                   content: String(msg.content),
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
+                   
                   tool_calls: msg.toolCalls,
                 };
               }
@@ -204,7 +204,7 @@ export const useMcpLlmIntegration = (addErrorMessage?: (message: string) => void
           response = await llm.chatCompletions({
             model: llm.Model.BASE,
             messages: updatedOpenAiMessages,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
             tools: tools as any,
           });
         }

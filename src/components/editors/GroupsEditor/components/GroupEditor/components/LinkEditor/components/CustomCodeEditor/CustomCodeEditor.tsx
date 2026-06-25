@@ -1,11 +1,11 @@
 import { CodeEditorSuggestionItem } from '@grafana/ui';
-import { AutosizeCodeEditor } from '@volkovlabs/components';
 /**
  * Monaco
  */
 import type * as monacoType from 'monaco-editor/esm/vs/editor/editor.api';
 import React, { useCallback } from 'react';
 
+import { AutosizeCodeEditor } from '@/components/AutosizeCodeEditor';
 import { TEST_IDS } from '@/constants';
 import { CodeLanguage } from '@/types';
 

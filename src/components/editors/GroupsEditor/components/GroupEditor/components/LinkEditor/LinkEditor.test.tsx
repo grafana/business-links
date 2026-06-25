@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/test-utils/jest-selectors';
 import { getTemplateSrv, TemplateSrv } from '@grafana/runtime';
 import React from 'react';
 

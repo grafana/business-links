@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/test-utils/jest-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
