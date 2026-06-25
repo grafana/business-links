@@ -1,7 +1,7 @@
 import { EventBus } from '@grafana/data';
 import { RefreshEvent } from '@grafana/runtime';
 import { sceneGraph, SceneObject, SceneObjectState } from '@grafana/scenes';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AnnotationDataLayer, AnnotationLayer } from '@/types';
 
@@ -9,52 +9,34 @@ import { AnnotationDataLayer, AnnotationLayer } from '@/types';
  * useAnnotations hook
  * retrieve annotations in scene dashboards
  */
+const getAnnotationLayers = (): AnnotationLayer[] => {
+  try {
+    const sceneModel = window.__grafanaSceneContext as SceneObject<SceneObjectState>;
+    if (!sceneModel) return [];
+    const layers = sceneGraph.getDataLayers(sceneModel) as unknown as AnnotationDataLayer[] | undefined;
+    if (!layers || layers.length === 0) return [];
+    return layers.flatMap((layer) => layer?.state?.annotationLayers ?? []);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (err) {
+    return [];
+  }
+};
+
 export const useAnnotations = ({ eventBus }: { eventBus?: EventBus }) => {
-  const [annotationsLayers, setAnnotationsLayers] = useState<AnnotationLayer[]>([]);
-
-  const loadAnnotations = useCallback(() => {
-    try {
-      const sceneModel = window.__grafanaSceneContext as SceneObject<SceneObjectState>;
-
-      if (!sceneModel) {
-        setAnnotationsLayers([]);
-        return;
-      }
-
-      const layers = sceneGraph.getDataLayers(sceneModel) as unknown as AnnotationDataLayer[] | undefined;
-
-      if (!layers || layers.length === 0) {
-        setAnnotationsLayers([]);
-        return;
-      }
-
-      const flattened = layers.flatMap((layer) => layer?.state?.annotationLayers ?? []);
-      setAnnotationsLayers(flattened);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      setAnnotationsLayers([]);
-    }
-  }, []);
+  const [annotationsLayers, setAnnotationsLayers] = useState<AnnotationLayer[]>(getAnnotationLayers);
 
   /**
-   * Initial load
-   */
-  useEffect(() => {
-    loadAnnotations();
-  }, [loadAnnotations]);
-
-  /**
-   * Load Annotations on Refresh
+   * Reload annotations on dashboard refresh events
    */
   useEffect(() => {
     const subscriber = eventBus?.getStream(RefreshEvent).subscribe(() => {
-      loadAnnotations();
+      setAnnotationsLayers(getAnnotationLayers());
     });
 
     return () => {
       subscriber?.unsubscribe();
     };
-  }, [eventBus, loadAnnotations]);
+  }, [eventBus]);
 
   return annotationsLayers;
 };

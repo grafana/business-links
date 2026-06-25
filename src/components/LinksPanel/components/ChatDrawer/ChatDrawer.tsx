@@ -238,13 +238,16 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
   /**
    * Initialize MCP tools
    */
-  const initializeMcpTools = useCallback(async () => {
+  const initializeMcpTools = useCallback(async (signal: { cancelled: boolean }) => {
     try {
       const shouldUseDefaultGrafanaMcp = useDefaultGrafanaMcp ?? false;
 
       const mcpStatus = await checkMcpStatus();
+      if (signal.cancelled) return;
+
       if (mcpStatus.isAvailable) {
         const tools = await getAvailableTools(mcpServers, shouldUseDefaultGrafanaMcp);
+        if (signal.cancelled) return;
 
         setAvailableTools(tools);
         setMcpEnabled(true);
@@ -253,6 +256,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
         setMcpEnabled(false);
       }
     } catch (error) {
+      if (signal.cancelled) return;
       addErrorMessage(`Failed to initialize MCP tools: ${error instanceof Error ? error.message : String(error)}`);
       setMcpEnabled(false);
     }
@@ -383,7 +387,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
     initialPrompt,
     customAssistantName,
     mcpEnabled,
-    availableTools?.length,
+    availableTools,
     sendMessageWithTools,
     mcpServers,
     useDefaultGrafanaMcp,
@@ -423,9 +427,15 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
   }, [inputValue, adjustTextareaHeight]);
 
   useEffect(() => {
-    if (isOpen) {
-      initializeMcpTools();
+    if (!isOpen) {
+      return;
     }
+
+    const signal = { cancelled: false };
+    (async () => { await initializeMcpTools(signal); })();
+    return () => {
+      signal.cancelled = true;
+    };
   }, [isOpen, initializeMcpTools]);
 
   useEffect(() => {
