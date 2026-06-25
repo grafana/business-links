@@ -7,7 +7,7 @@ services:
       - 3000:3000/tcp
     build:
       args:
-        grafana_version: 13.1.0
+        grafana_version: ${GRAFANA_VERSION:-13.1.0}
     entrypoint: ["/bin/sh", "-c", "/usr/share/grafana/bin/grafana cli plugins install grafana-llm-app && exec /entrypoint.sh"]
     environment:
       - GF_DEFAULT_APP_MODE=development
@@ -17,6 +17,12 @@ services:
       - GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED=true
       - OPENAI_ORG_ID=
       - OPENAI_API_KEY=
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -q -O /dev/null http://localhost:3000/api/health || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
 
   timescale:
     image: timescale/timescaledb:latest-pg14
@@ -66,8 +72,11 @@ services:
       - ./test:/app/test
       - ./playwright-report:/app/playwright-report
     depends_on:
-      - grafana
-      - timescale
-      - server
+      grafana:
+        condition: service_healthy
+      timescale:
+        condition: service_healthy
+      server:
+        condition: service_started
     profiles:
       - playwright
