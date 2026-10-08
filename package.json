@@ -39,7 +39,7 @@
     "@hello-pangea/dnd": "18.0.1",
     "@volkovlabs/components": "4.6.0",
     "dayjs": "1.11.21",
-    "handlebars": "4.7.9",
+    "handlebars": "4.7.10",
     "helper-date": "1.0.1",
     "markdown-it": "14.2.0",
     "pg": "8.22.0",
